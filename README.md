@@ -12,7 +12,7 @@
   Kotlin - Programming Language<br>
   Jetpack Compose - Ui framework<br>
   MVVM (Model-View_ViewModel) & Clean architecture - Architecture pattern<br>
-  Retrofit & Okhttp - Network calls<br>
+  Retrofit & Okhttp - Networking<br>
   Koin - Dependency Injection<br>
   Coroutines - Asynchronous programming<br>
   StateFlows - Reactive programming<br>
