@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="search_field_hint">Enter Country Iso2</string>
+    <string name="search">Search</string>
+    <string name="no_iso2_error">No states, Please enter valid country Iso2</string>
+    <string name="enter_Iso2_message">Enter country Iso2 in search bar to start displaying states</string>
+    <string name="country_states">Country States</string>
+    <string name="no_states">No States found</string>
+    <string name="weather_screen_title">Weather of %s</string>
+    <string name="no_weather_error">Something went wrong while retrieving weather. Please try again later.</string>
+    <string name="temperature_degree">%d°C</string>
+    <string name="humidity">Humidity</string>
+    <string name="humidity_degree">%s%%</string>
+    <string name="uv_index">UV index</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="wind_speed_degree">%s km/h</string>
+    <string name="visibility">Visibility</string>
+    <string name="visibility_degree">%s km</string>
+    <string name="pressure">Pressure</string>
+    <string name="pressure_degree">%s mb</string>
+    <string name="wind_direction">Wind direction</string>
+    <string name="wind_degree">Wind degree</string>
+    <string name="image_description">Image describes card</string>
+    <string name="feels_like">feels like %s°C</string>
+    <string name="fetch_weather">Still fetching weather</string>
+    <string name="back">Back</string>
+</resources>
