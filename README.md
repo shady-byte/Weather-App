@@ -3,38 +3,38 @@
 
 
 - Key-Features<br>
-  ✔️ Fetches real-time weather data
-  ✔️ Fetches all states of specific country 
-  ✔️ Displays temperature, humidity, and other weather conditions
-  ✔️ Unit test for all layers
+  ✔️ Fetches real-time weather data<br>
+  ✔️ Fetches all states of specific country<br>
+  ✔️ Displays temperature, humidity, and other weather conditions<br>
+  ✔️ Unit test for all layers<br>
 
 
-- Tech Stack
-  Kotlin - Programming Language
-  Jetpack Compose - Ui framework
-  MVVM (Model-View_ViewModel) & Clean architecture - Architecture pattern
-  Retrofit & Okhttp - Network calls
-  Koin - Dependency Injection
-  Coroutines - Asynchronous programming
-  StateFlows - Reactive programming
-  MockK & turbine - UnitTesting
+- Tech Stack<br>
+  Kotlin - Programming Language<br>
+  Jetpack Compose - Ui framework<br>
+  MVVM (Model-View_ViewModel) & Clean architecture - Architecture pattern<br>
+  Retrofit & Okhttp - Network calls<br>
+  Koin - Dependency Injection<br>
+  Coroutines - Asynchronous programming<br>
+  StateFlows - Reactive programming<br>
+  MockK & turbine - UnitTesting<br>
 
 
-- Clone the Repository
-  All you need to do is to copy the Repo-Url and add it in android studio (FIle -> New -> Project from version control)
+- Clone the Repository<br>
+  All you need to do is to copy the Repo-Url and add it in android studio (FIle -> New -> Project from version control)<br>
 
 
-- Get Api Keys
-  You need to create your own access keys to be able to fetch data from Apis
-  -- visit https://weatherstack.com and create your own access key
-  -- visit https://countrystatecity.in/ and create your own access key
+- Get Api Keys<br>
+  You need to create your own access keys to be able to fetch data from Apis<br>
+  -- visit https://weatherstack.com and create your own access key<br>
+  -- visit https://countrystatecity.in/ and create your own access key<br>
 
-- Add Api keys to your project
-  add your Api access keys to local.properties file like this
-  WEATHER_API_KEY = WEATHER_API_ACCESS_KEY
-  STATES_API_KEY = STATES_API_ACCESS_KEY
+- Add Api keys to your project<br>
+  add your Api access keys to local.properties file like this<br>
+  WEATHER_API_KEY = WEATHER_API_ACCESS_KEY<br>
+  STATES_API_KEY = STATES_API_ACCESS_KEY<br>
 
-- Woow, Now you are ready to run the project
+- Woow, Now you are ready to run the project<br>
 
-- Screenshots
+- Screenshots<br>
   
