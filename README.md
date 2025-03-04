@@ -1,8 +1,8 @@
-- Weather App - Android
-  A simple weather application built with Kotlin, MVVM, and Jetpack Compose to display current weather conditions for a state you choose.
+- Weather App - Android<br>
+  A simple weather application built with Kotlin, MVVM, and Jetpack Compose to display current weather conditions for a state you choose.<br>
 
 
-- Key-Features
+- Key-Features<br>
   ✔️ Fetches real-time weather data
   ✔️ Fetches all states of specific country 
   ✔️ Displays temperature, humidity, and other weather conditions
