@@ -21,7 +21,7 @@
 
 
 - Clone the Repository<br>
-  All you need to do is to copy the Repo-Url and add it in android studio (FIle -> New -> Project from version control)<br><br>
+  All you need to do is to copy the Repo-Url and add it in android studio (File -> New -> Project from version control)<br><br>
 
 
 - Get Api Keys<br>
