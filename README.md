@@ -5,8 +5,7 @@
 - Key-Features<br>
   ✔️ Fetches real-time weather data<br>
   ✔️ Fetches all states of specific country<br>
-  ✔️ Displays temperature, humidity, and other weather conditions<br>
-  ✔️ Unit test for all layers<br><br>
+  ✔️ Displays temperature, humidity, and other weather conditions<br><br>
 
 
 - Tech Stack<br>
