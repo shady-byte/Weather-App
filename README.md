@@ -36,5 +36,14 @@
 
 - Woow, Now you are ready to run the project<br><br>
 
-- Screenshots<br>
+- Screenshots<br><br>
+
+<table>
+  <tr>
+    <td><img src="https://github.com/shady-byte/Weather-App/blob/14c99d2c9e9ac295386b7c3573426f922cbcfc8e/Screenshot%202025-03-04%20151752.png" width=223 height=450></td>
+    <td><img src="https://user-images.githubusercontent.com/76439620/218319432-76e798c0-f420-4418-ab04-2b66bc917b8b.PNG" width=223 height=450></td>
+    <td><img src="https://user-images.githubusercontent.com/76439620/218319474-1f19a578-d75c-455d-9d81-bc0837edbe0f.PNG" width=223 height=450></td>
+  </tr>
+ </table>
+
   
