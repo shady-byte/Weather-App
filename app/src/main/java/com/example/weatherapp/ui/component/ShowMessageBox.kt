@@ -10,13 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.ui.theme.Dimensions
+import com.example.weatherapp.ui.theme.Dimension
 
 @Composable
 fun ShowMessageBox(modifier: Modifier = Modifier, message: String) {
     Box(
         modifier = modifier.fillMaxSize()
-            .padding(horizontal = Dimensions.screenPadding),
+            .padding(horizontal = Dimension.screenPadding),
         contentAlignment = Alignment.Center
     ) {
         Text(

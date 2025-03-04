@@ -29,7 +29,7 @@ import com.example.weatherapp.ui.component.SearchTopBar
 import com.example.weatherapp.ui.component.ShowCircularProgress
 import com.example.weatherapp.ui.component.ShowMessageBox
 import com.example.weatherapp.ui.component.StateCard
-import com.example.weatherapp.ui.theme.Dimensions
+import com.example.weatherapp.ui.theme.Dimension
 import com.example.weatherapp.viewModel.StatesViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -100,10 +100,10 @@ fun StatesSuccessScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = Dimensions.screenPadding),
+                .padding(horizontal = Dimension.screenPadding),
             contentPadding = PaddingValues(
-                top = Dimensions.smallPadding,
-                bottom = Dimensions.smallPadding
+                top = Dimension.smallPadding,
+                bottom = Dimension.smallPadding
             )
         ) {
             item {
