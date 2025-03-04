@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.screen
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -52,29 +53,32 @@ fun StatesScreen(
         when (val state = uiState) {
             is ResultState.Idle -> {
                 ShowMessageBox(
-                    modifier = modifier,
+                    modifier = modifier.padding(paddingValue),
                     message = stringResource(R.string.enter_Iso2_message)
                 )
             }
 
             is ResultState.Loading -> {
-                ShowCircularProgress(modifier = modifier)
+                ShowCircularProgress(modifier = modifier.padding(paddingValue))
             }
 
             is ResultState.Error -> {
                 ShowMessageBox(
-                    modifier = modifier,
+                    modifier = modifier.padding(paddingValue),
                     message = stringResource(R.string.no_iso2_error)
                 )
             }
 
             is ResultState.Success -> {
-                if(state.data.isEmpty()) {
-                     ShowMessageBox(message = stringResource(R.string.no_states))
+                if (state.data.isEmpty()) {
+                    ShowMessageBox(
+                        modifier = modifier.padding(paddingValue),
+                        message = stringResource(R.string.no_states)
+                    )
                 } else {
                     StatesSuccessScreen(
+                        modifier = modifier.padding(paddingValue),
                         states = state.data,
-                        paddingValue = paddingValue,
                         onItemClick = { navController.navigate("weather/${it.name}") }
                     )
                 }
@@ -87,31 +91,35 @@ fun StatesScreen(
 fun StatesSuccessScreen(
     modifier: Modifier = Modifier,
     states: List<CountryState>,
-    paddingValue: PaddingValues,
     onItemClick: (state: CountryState) -> Unit
 ) {
-    LazyColumn(
+    Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = Dimensions.screenPadding),
-        contentPadding = PaddingValues(
-            top = paddingValue.calculateTopPadding() + Dimensions.smallPadding,
-            bottom = paddingValue.calculateBottomPadding() + Dimensions.smallPadding
-        )
     ) {
-        item {
-            Text(
-                text = stringResource(R.string.country_states),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(vertical = 8.dp)
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = Dimensions.screenPadding),
+            contentPadding = PaddingValues(
+                top = Dimensions.smallPadding,
+                bottom = Dimensions.smallPadding
             )
-        }
+        ) {
+            item {
+                Text(
+                    text = stringResource(R.string.country_states),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+            }
 
-        items(states) { state ->
-            StateCard(state = state) {
-                onItemClick(state)
+            items(states) { state ->
+                StateCard(state = state) {
+                    onItemClick(state)
+                }
             }
         }
     }
