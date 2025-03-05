@@ -42,7 +42,7 @@ fun SearchOutlinedTextField(
         placeholder = {
             Text(
                 stringResource(R.string.search_field_hint),
-                style = TextStyle(fontSize = 13.sp)
+                style = TextStyle(fontSize = 13.sp, color = Color.LightGray)
             )
         },
         singleLine = true,
