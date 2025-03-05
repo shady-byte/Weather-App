@@ -21,8 +21,8 @@
 
 ### Prerequisites
 - You need to create your own access keys to be able to fetch data from Apis
-- visit https://weatherstack.com to create your own access key
-- visit https://countrystatecity.in/ to create your own access key
+- visit https://weatherstack.com to create your own access key for weather Api
+- visit https://countrystatecity.in/ to create your own access key for states Api
 
 ### Steps
 1. Clone the repository:
