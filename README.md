@@ -39,9 +39,9 @@
 
 <table>
   <tr>
-    <td><img src="https://github.com/shady-byte/Weather-App/blob/14c99d2c9e9ac295386b7c3573426f922cbcfc8e/Screenshot%202025-03-04%20151752.png" width=223 height=450></td>
-    <td><img src="https://github.com/shady-byte/Weather-App/blob/c0a037e16042632bfac3c79b4bc2c540c2b1b62d/Screenshot%202025-03-04%20151855.png" width=223 height=450></td>
-    <td><img src="https://github.com/shady-byte/Weather-App/blob/c0a037e16042632bfac3c79b4bc2c540c2b1b62d/Screenshot%202025-03-04%20152114.png" width=223 height=450></td>
+    <td><img src="" width=223 height=450></td>
+    <td><img src="" width=223 height=450></td>
+    <td><img src="" width=223 height=450></td>
   </tr>
  </table>
 
