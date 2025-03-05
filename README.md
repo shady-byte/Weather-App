@@ -35,7 +35,7 @@
 5. Run the app on an emulator or physical device.
 
 ## Acknowledgments
-- Thanks to weatherstack.com for providing the weather data API.
+- Thanks to weatherstack for providing the weather data API.
 - Thanks to countrystatecity for providing the country/state data API.
 
 ## Screenshots
