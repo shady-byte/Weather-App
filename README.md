@@ -26,11 +26,11 @@
 
 ### Steps
 1. Clone the repository:
-   git clone https://github.com/your-username/your-repo.git
+   - git clone https://github.com/your-username/your-repo.git
 2. Open the project in Android Studio.
 3. add your Api keys this to local.properties file
-   WEATHER_API_KEY = WEATHER_API_ACCESS_KEY
-   STATES_API_KEY = STATES_API_ACCESS_KEY
+   - WEATHER_API_KEY = WEATHER_API_ACCESS_KEY
+   - STATES_API_KEY = STATES_API_ACCESS_KEY
 4. Sync Gradle files and build project.
 5. Run the app on an emulator or physical device.
 
@@ -38,7 +38,7 @@
 - Thanks to Weatherstack for providing the weather data API.
 - Thanks to CountryStateCity for providing the country/state data API.
 
-##Screenshots
+## Screenshots
 <table>
   <tr>
     <td><img src="https://github.com/shady-byte/Weather-App/blob/8b559819c55aa2cf6ca9e0afd64536d795a0a6d4/states-screenshot.png" width=223 height=450></td>
@@ -47,6 +47,6 @@
  </table>
 
  
-## Woow, Now You're Ready to Know The Weather Of Your State! 🚀
+## Woow, Now You're Ready to Know The Current Weather Of Your State! 🚀
 
   
