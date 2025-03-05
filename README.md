@@ -8,9 +8,9 @@
 - Fetches real-time weather data of specific country state
 - Displays temperature, humidity, and other weather conditions
 
-## Techn Stack & Libraries
+## Tech Stack & Libraries
 - Kotlin: Programming language
-- Jetpack Compose: Ui plateform
+- Jetpack Compose: Ui platform
 - MVVM & Clean architecture: Architecture pattern 
 - Retrofit: Networking
 - Koin: Dependency Injection
@@ -35,8 +35,8 @@
 5. Run the app on an emulator or physical device.
 
 ## Acknowledgments
-- Thanks to Weatherstack for providing the weather data API.
-- Thanks to CountryStateCity for providing the country/state data API.
+- Thanks to weatherstack.com for providing the weather data API.
+- Thanks to countrystatecity for providing the country/state data API.
 
 ## Screenshots
 <table>
