@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.weatherapp.R
-import com.example.weatherapp.data.model.StateWeather
+import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.domain.util.ResultState
 import com.example.weatherapp.ui.component.ShowCircularProgress
 import com.example.weatherapp.ui.component.ShowMessageBox
@@ -37,7 +37,7 @@ import com.example.weatherapp.ui.theme.Dimension
 import com.example.weatherapp.ui.theme.Gainsboro
 import com.example.weatherapp.ui.theme.WhiteSmoke
 import com.example.weatherapp.ui.util.WeatherDataHelper.getWeatherDetails
-import com.example.weatherapp.viewModel.WeatherViewModel
+import com.example.weatherapp.ui.viewModel.WeatherViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

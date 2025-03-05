@@ -9,23 +9,50 @@ import com.example.weatherapp.domain.repository.StatesRepository
 import com.example.weatherapp.domain.repository.WeatherRepository
 import com.example.weatherapp.domain.usecase.GetCountryStatesUseCase
 import com.example.weatherapp.domain.usecase.GetStateWeatherUseCase
-import com.example.weatherapp.viewModel.StatesViewModel
-import com.example.weatherapp.viewModel.WeatherViewModel
+import com.example.weatherapp.ui.viewModel.StatesViewModel
+import com.example.weatherapp.ui.viewModel.WeatherViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val appModule = module {
+const val STATES_CLIENT = "states_client"
+const val WEATHER_CLIENT = "weather_client"
 
-    single { OkHttpClient.Builder().build() }
+val appModule = module {
+    single(named(STATES_CLIENT)) { OkHttpClient.Builder()
+        .addInterceptor { chain ->
+            val original = chain.request()
+            val newRequest = original.newBuilder()
+                .header("X-CSCAPI-KEY", BuildConfig.STATES_API_KEY)
+                .build()
+            chain.proceed(newRequest)
+        }
+        .build()
+    }
+    single(named(WEATHER_CLIENT)) { OkHttpClient.Builder()
+        .addInterceptor { chain ->
+            val originalRequest = chain.request()
+            val originalUrl = originalRequest.url
+
+            val newUrl = originalUrl.newBuilder()
+                .addQueryParameter("access_key", BuildConfig.WEATHER_API_KEY)
+                .build()
+
+            val newRequest = originalRequest.newBuilder().url(newUrl).build()
+            chain.proceed(newRequest)
+        }
+        .build()
+    }
+
     single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.STATES_BASE_URL)
-            .client(get())
+            .client(get(named(STATES_CLIENT)))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(StatesApiService::class.java)
@@ -33,7 +60,7 @@ val appModule = module {
     single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.WEATHER_BASE_URL)
-            .client(get())
+            .client(get(named(WEATHER_CLIENT)))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherApiService::class.java)

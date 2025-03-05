@@ -1,8 +1,8 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.data.model.CurrentWeather
-import com.example.weatherapp.data.model.LocationInfo
-import com.example.weatherapp.data.model.StateWeather
+import com.example.weatherapp.data.remote.dto.CurrentWeather
+import com.example.weatherapp.data.remote.dto.LocationInfo
+import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.data.remote.WeatherApiService
 import com.example.weatherapp.data.repository.WeatherRepositoryImpl
 import com.example.weatherapp.domain.repository.WeatherRepository
@@ -66,7 +66,7 @@ class WeatherRepositoryUnitTest {
             )
         )
 
-        coEvery { weatherApiService.getStateWeather(any(), any()) } returns expectedWeather
+        coEvery { weatherApiService.getStateWeather(any()) } returns expectedWeather
 
         val result = weatherRepository.getStateWeather(state)
 
@@ -77,7 +77,7 @@ class WeatherRepositoryUnitTest {
     fun `getStateWeather should throws exception when Api fails`() = runTest {
         val state = "Alexandria"
 
-        coEvery { weatherApiService.getStateWeather(any(), any()) } throws Exception("APi Error")
+        coEvery { weatherApiService.getStateWeather(any()) } throws Exception("APi Error")
 
         weatherRepository.getStateWeather(state)
     }

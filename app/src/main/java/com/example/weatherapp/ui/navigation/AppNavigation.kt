@@ -9,12 +9,12 @@ import com.example.weatherapp.ui.screen.StatesScreen
 
 @Composable
 fun AppNavigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "states") {
-        composable("states") {
+    NavHost(navController = navController, startDestination = NavigationRoutes.STATES) {
+        composable(NavigationRoutes.STATES) {
             StatesScreen(navController = navController)
         }
 
-        composable("weather/{state}") { backStackEntry ->
+        composable(NavigationRoutes.WEATHER) { backStackEntry ->
             val state = backStackEntry.arguments?.getString("state") ?: ""
             StateWeatherScreen(navController = navController, countryState = state)
         }

@@ -1,6 +1,6 @@
 package com.example.weatherapp.domain.usecase
 
-import com.example.weatherapp.data.model.StateWeather
+import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.domain.repository.WeatherRepository
 import com.example.weatherapp.domain.util.ResultState
 

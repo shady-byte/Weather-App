@@ -1,8 +1,8 @@
-package com.example.weatherapp.viewModel
+package com.example.weatherapp.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.data.model.CountryState
+import com.example.weatherapp.data.remote.dto.CountryState
 import com.example.weatherapp.domain.usecase.GetCountryStatesUseCase
 import com.example.weatherapp.domain.util.ResultState
 import kotlinx.coroutines.flow.MutableStateFlow

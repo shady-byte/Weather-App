@@ -1,6 +1,6 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.data.model.CountryState
+import com.example.weatherapp.data.remote.dto.CountryState
 import com.example.weatherapp.data.remote.StatesApiService
 import com.example.weatherapp.data.repository.StatesRepositoryImpl
 import com.example.weatherapp.domain.repository.StatesRepository
@@ -59,7 +59,7 @@ class StatesRepositoryUnitTest {
             )
         )
 
-        coEvery { statesApiService.getCountryStates(any(), any()) } returns expectedStates
+        coEvery { statesApiService.getCountryStates(any()) } returns expectedStates
 
         val result = statesRepository.getCountryStates(countryCode)
 
@@ -72,7 +72,7 @@ class StatesRepositoryUnitTest {
             val countryCode = "E"
             val expectedStates = emptyList<CountryState>()
 
-            coEvery { statesApiService.getCountryStates(any(), any()) } returns expectedStates
+            coEvery { statesApiService.getCountryStates(any()) } returns expectedStates
 
             val result = statesRepository.getCountryStates(countryCode)
 
@@ -83,7 +83,7 @@ class StatesRepositoryUnitTest {
     fun `getCountryStates should return throws exception when Api fails`() = runTest {
         val countryCode = "E"
 
-        coEvery { statesApiService.getCountryStates(any(), any()) } throws  Exception("Api Error")
+        coEvery { statesApiService.getCountryStates(any()) } throws  Exception("Api Error")
 
         statesRepository.getCountryStates(countryCode)
     }

@@ -2,7 +2,7 @@ package com.example.weatherapp.ui.util
 
 import android.content.Context
 import com.example.weatherapp.R
-import com.example.weatherapp.data.model.StateWeather
+import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.ui.model.WeatherDetail
 
 object WeatherDataHelper {

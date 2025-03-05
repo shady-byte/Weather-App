@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.model
+package com.example.weatherapp.data.remote.dto
 
 data class CountryState(
     val id: Int,

@@ -1,10 +1,10 @@
 package com.example.weatherapp.presentation
 
 import app.cash.turbine.test
-import com.example.weatherapp.data.model.CountryState
+import com.example.weatherapp.data.remote.dto.CountryState
 import com.example.weatherapp.domain.usecase.GetCountryStatesUseCase
 import com.example.weatherapp.domain.util.ResultState
-import com.example.weatherapp.viewModel.StatesViewModel
+import com.example.weatherapp.ui.viewModel.StatesViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
