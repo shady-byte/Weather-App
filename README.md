@@ -39,9 +39,8 @@
 
 <table>
   <tr>
-    <td><img src="" width=223 height=450></td>
-    <td><img src="" width=223 height=450></td>
-    <td><img src="" width=223 height=450></td>
+    <td><img src="https://github.com/shady-byte/Weather-App/blob/8b559819c55aa2cf6ca9e0afd64536d795a0a6d4/states-screenshot.png" width=223 height=450></td>
+    <td><img src="https://github.com/shady-byte/Weather-App/blob/8b559819c55aa2cf6ca9e0afd64536d795a0a6d4/weather-screenshot.png" width=223 height=450></td>
   </tr>
  </table>
 
