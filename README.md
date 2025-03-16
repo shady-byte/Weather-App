@@ -28,7 +28,7 @@
 1. Clone the repository:
    - git clone https://github.com/your-username/your-repo.git
 2. Open the project in Android Studio.
-3. add your Api keys this to local.properties file
+3. add your Api keys to local.properties file
    - WEATHER_API_KEY = WEATHER_API_ACCESS_KEY
    - STATES_API_KEY = STATES_API_ACCESS_KEY
 4. Sync Gradle files and build project.
