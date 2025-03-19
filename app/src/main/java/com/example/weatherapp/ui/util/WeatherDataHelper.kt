@@ -5,48 +5,46 @@ import com.example.weatherapp.R
 import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.ui.model.WeatherDetail
 
-object WeatherDataHelper {
-    fun StateWeather.getWeatherDetails(context: Context): List<WeatherDetail> {
-        return listOf(
-            WeatherDetail(
-                titleRes = R.string.uv_index,
-                subtitle = currentWeather.uvIndex.toString(),
-                imageSrc = R.drawable.uv_index_icon
+fun StateWeather.getWeatherDetails(context: Context): List<WeatherDetail> {
+    return listOf(
+        WeatherDetail(
+            titleRes = R.string.uv_index,
+            subtitle = currentWeather.uvIndex.toString(),
+            imageSrc = R.drawable.uv_index_icon
+        ),
+        WeatherDetail(
+            titleRes = R.string.humidity,
+            subtitle = context.getString(
+                R.string.humidity_degree,
+                currentWeather.humidity.toString()
             ),
-            WeatherDetail(
-                titleRes = R.string.humidity,
-                subtitle = context.getString(
-                    R.string.humidity_degree,
-                    currentWeather.humidity.toString()
-                ),
-                imageSrc = R.drawable.humidity_icon
+            imageSrc = R.drawable.humidity_icon
+        ),
+        WeatherDetail(
+            titleRes = R.string.wind_speed,
+            subtitle = context.getString(
+                R.string.wind_speed_degree,
+                currentWeather.windSpeed.toString()
             ),
-            WeatherDetail(
-                titleRes = R.string.wind_speed,
-                subtitle = context.getString(
-                    R.string.wind_speed_degree,
-                    currentWeather.windSpeed.toString()
-                ),
-                imageSrc = R.drawable.wind_speed_icon
+            imageSrc = R.drawable.wind_speed_icon
+        ),
+        WeatherDetail(
+            titleRes = R.string.visibility,
+            subtitle = context.getString(R.string.visibility_degree, currentWeather.visibility),
+            imageSrc = R.drawable.visibility_icon
+        ),
+        WeatherDetail(
+            titleRes = R.string.pressure,
+            subtitle = context.getString(
+                R.string.pressure_degree,
+                currentWeather.pressure.toString()
             ),
-            WeatherDetail(
-                titleRes = R.string.visibility,
-                subtitle = context.getString(R.string.visibility_degree, currentWeather.visibility),
-                imageSrc = R.drawable.visibility_icon
-            ),
-            WeatherDetail(
-                titleRes = R.string.pressure,
-                subtitle = context.getString(
-                    R.string.pressure_degree,
-                    currentWeather.pressure.toString()
-                ),
-                imageSrc = R.drawable.pressure_icon
-            ),
-            WeatherDetail(
-                titleRes = R.string.wind_direction,
-                subtitle = currentWeather.windDirection,
-                imageSrc = R.drawable.wind_direction_icon
-            )
+            imageSrc = R.drawable.pressure_icon
+        ),
+        WeatherDetail(
+            titleRes = R.string.wind_direction,
+            subtitle = currentWeather.windDirection,
+            imageSrc = R.drawable.wind_direction_icon
         )
-    }
+    )
 }

@@ -1,7 +1,5 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.data.remote.dto.CurrentWeather
-import com.example.weatherapp.data.remote.dto.LocationInfo
 import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.data.remote.WeatherApiService
 import com.example.weatherapp.data.repository.WeatherRepositoryImpl
@@ -43,28 +41,7 @@ class WeatherRepositoryUnitTest {
     @Test
     fun `getStateWeather should return StateWeather`() = runTest {
         val state = "Alexandria"
-        val expectedWeather = StateWeather(
-            location = LocationInfo(
-                name = "Alexandria",
-                country = "Egypt",
-                timezoneId = "4"
-            ),
-            currentWeather = CurrentWeather(
-                observationTime = "03:15PM",
-                temperature = 25,
-                weatherIcons = listOf("Sunny.png"),
-                weatherDescriptions = listOf("it is sunny"),
-                weatherCode = 12,
-                windDirection = "NW",
-                visibility = 16,
-                pressure = 7,
-                humidity = 3,
-                windDegree = 17,
-                feelsLike = 15,
-                uvIndex = 5,
-                windSpeed = 9
-            )
-        )
+        val expectedWeather = mockk<StateWeather>()
 
         coEvery { weatherApiService.getStateWeather(any()) } returns expectedWeather
 

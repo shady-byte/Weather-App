@@ -43,11 +43,7 @@ class StatesViewModelUnitTest {
     fun `getCountryStates emits Success when useCase returns data successfully`() =
         runTest {
             val countryCode = "EG"
-            val statesList = listOf(
-                CountryState(id = 1, name = "Alexandria", iso2 = "Alex"),
-                CountryState(id = 1, name = "Alexandria", iso2 = "Alex"),
-                CountryState(id = 1, name = "Alexandria", iso2 = "Alex")
-            )
+            val statesList = mockk<List<CountryState>>()
 
             coEvery { getCountryStatesUseCase(any()) } returns ResultState.Success(statesList)
 

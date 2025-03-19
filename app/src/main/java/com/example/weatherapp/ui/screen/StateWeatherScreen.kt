@@ -36,7 +36,7 @@ import com.example.weatherapp.ui.component.WeatherIcon
 import com.example.weatherapp.ui.theme.Dimension
 import com.example.weatherapp.ui.theme.Gainsboro
 import com.example.weatherapp.ui.theme.WhiteSmoke
-import com.example.weatherapp.ui.util.WeatherDataHelper.getWeatherDetails
+import com.example.weatherapp.ui.util.getWeatherDetails
 import com.example.weatherapp.ui.viewModel.WeatherViewModel
 import org.koin.androidx.compose.koinViewModel
 

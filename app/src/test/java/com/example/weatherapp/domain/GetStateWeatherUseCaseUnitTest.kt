@@ -1,7 +1,5 @@
 package com.example.weatherapp.domain
 
-import com.example.weatherapp.data.remote.dto.CurrentWeather
-import com.example.weatherapp.data.remote.dto.LocationInfo
 import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.domain.repository.WeatherRepository
 import com.example.weatherapp.domain.usecase.GetStateWeatherUseCase
@@ -43,28 +41,7 @@ class GetStateWeatherUseCaseUnitTest {
     @Test
     fun `invoke should return Success when repository returns data`() = runTest {
         val countryCode = "EG"
-        val expectedWeather = StateWeather(
-            location = LocationInfo(
-                name = "Alexandria",
-                country = "Egypt",
-                timezoneId = "4"
-            ),
-            currentWeather = CurrentWeather(
-                observationTime = "03:15PM",
-                temperature = 25,
-                weatherIcons = listOf("Sunny.png"),
-                weatherDescriptions = listOf("it is sunny"),
-                weatherCode = 12,
-                windDirection = "NW",
-                visibility = 16,
-                pressure = 7,
-                humidity = 3,
-                windDegree = 17,
-                feelsLike = 15,
-                uvIndex = 5,
-                windSpeed = 9
-            )
-        )
+        val expectedWeather = mockk<StateWeather>()
 
         coEvery { weatherRepository.getStateWeather(any()) } returns expectedWeather
 

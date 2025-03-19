@@ -1,8 +1,6 @@
 package com.example.weatherapp.presentation
 
 import app.cash.turbine.test
-import com.example.weatherapp.data.remote.dto.CurrentWeather
-import com.example.weatherapp.data.remote.dto.LocationInfo
 import com.example.weatherapp.data.remote.dto.StateWeather
 import com.example.weatherapp.domain.usecase.GetStateWeatherUseCase
 import com.example.weatherapp.domain.util.ResultState
@@ -44,28 +42,7 @@ class WeatherViewModelUnitTest {
     @Test
     fun `getStateWeather emits Success when useCase returns data successfully`() = runTest {
         val stateName = "Alexandria"
-        val expectedWeather = StateWeather(
-            location = LocationInfo(
-                name = "Alexandria",
-                country = "Egypt",
-                timezoneId = "4"
-            ),
-            currentWeather = CurrentWeather(
-                observationTime = "03:15PM",
-                temperature = 25,
-                weatherIcons = listOf("Sunny.png"),
-                weatherDescriptions = listOf("it is sunny"),
-                weatherCode = 12,
-                windDirection = "NW",
-                visibility = 16,
-                pressure = 7,
-                humidity = 3,
-                windDegree = 17,
-                feelsLike = 15,
-                uvIndex = 5,
-                windSpeed = 9
-            )
-        )
+        val expectedWeather = mockk<StateWeather>()
 
         coEvery { getStateWeatherUseCase(any()) } returns ResultState.Success(expectedWeather)
 

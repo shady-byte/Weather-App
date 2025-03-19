@@ -1,19 +1,21 @@
 package com.example.weatherapp.data.remote.dto
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CurrentWeather(
-    @SerializedName("observation_time") val observationTime: String,
+    @SerialName("observation_time") val observationTime: String,
     val temperature: Int,
-    @SerializedName("weather_code") val weatherCode: Int,
-    @SerializedName("weather_icons") val weatherIcons: List<String>,
-    @SerializedName("weather_descriptions") val weatherDescriptions: List<String>,
-    @SerializedName("wind_speed") val windSpeed: Int,
-    @SerializedName("wind_degree") val windDegree: Int,
-    @SerializedName("wind_dir") val windDirection: String,
+    @SerialName("weather_code") val weatherCode: Int,
+    @SerialName("weather_icons") val weatherIcons: List<String>,
+    @SerialName("weather_descriptions") val weatherDescriptions: List<String>,
+    @SerialName("wind_speed") val windSpeed: Int,
+    @SerialName("wind_degree") val windDegree: Int,
+    @SerialName("wind_dir") val windDirection: String,
     val pressure: Int,
     val humidity: Int,
-    @SerializedName("feelslike") val feelsLike: Int,
-    @SerializedName("uv_index") val uvIndex: Int,
+    @SerialName("feelslike") val feelsLike: Int,
+    @SerialName("uv_index") val uvIndex: Int,
     val visibility: Int
 )

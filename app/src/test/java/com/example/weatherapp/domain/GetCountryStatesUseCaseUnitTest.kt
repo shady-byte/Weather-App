@@ -41,24 +41,7 @@ class GetCountryStatesUseCaseUnitTest {
     @Test
     fun `invoke should return Success when repository returns data`() = runTest {
         val countryCode = "EG"
-        val statesList =
-            listOf(
-                CountryState(
-                    id = 1,
-                    name = "Cairo",
-                    iso2 = "Ca"
-                ),
-                CountryState(
-                    id = 2,
-                    name = "Alexandria",
-                    iso2 = "Alex"
-                ),
-                CountryState(
-                    id = 3,
-                    name = "Luxor",
-                    iso2 = "Lu"
-                )
-            )
+        val statesList = mockk<List<CountryState>>()
 
         coEvery { statesRepository.getCountryStates(any()) } returns statesList
 
@@ -69,26 +52,28 @@ class GetCountryStatesUseCaseUnitTest {
     }
 
     @Test
-    fun `getCountryStates should return Error with message when repository throws exception with message`() = runTest {
-        val countryCode = "EG"
+    fun `getCountryStates should return Error with message when repository throws exception with message`() =
+        runTest {
+            val countryCode = "EG"
 
-        coEvery { statesRepository.getCountryStates(any()) } throws Exception("Api Error")
+            coEvery { statesRepository.getCountryStates(any()) } throws Exception("Api Error")
 
-        val result = getCountryStatesUseCase.invoke(countryCode)
-        val expectedResult = ResultState.Error("Api Error")
+            val result = getCountryStatesUseCase.invoke(countryCode)
+            val expectedResult = ResultState.Error("Api Error")
 
-        assertEquals(expectedResult, result)
-    }
+            assertEquals(expectedResult, result)
+        }
 
     @Test
-    fun `getCountryStates should return Error with message when repository throws exception without message`() = runTest {
-        val countryCode = "EG"
+    fun `getCountryStates should return Error with message when repository throws exception without message`() =
+        runTest {
+            val countryCode = "EG"
 
-        coEvery { statesRepository.getCountryStates(any()) } throws Exception()
+            coEvery { statesRepository.getCountryStates(any()) } throws Exception()
 
-        val result = getCountryStatesUseCase.invoke(countryCode)
-        val expectedResult = ResultState.Error("An error occurred")
+            val result = getCountryStatesUseCase.invoke(countryCode)
+            val expectedResult = ResultState.Error("An error occurred")
 
-        assertEquals(expectedResult, result)
-    }
+            assertEquals(expectedResult, result)
+        }
 }

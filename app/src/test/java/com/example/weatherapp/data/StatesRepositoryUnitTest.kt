@@ -41,23 +41,7 @@ class StatesRepositoryUnitTest {
     @Test
     fun `getCountryStates should return list of states`() = runTest {
         val countryCode = "EG"
-        val expectedStates = listOf(
-            CountryState(
-                id = 1,
-                name = "Alexandria",
-                iso2 = "Alex"
-            ),
-            CountryState(
-                id = 2,
-                name = "Cairo",
-                iso2 = "Ca"
-            ),
-            CountryState(
-                id = 3,
-                name = "Sharm-Elsheikh",
-                iso2 = "Sharm"
-            )
-        )
+        val expectedStates = mockk<List<CountryState>>()
 
         coEvery { statesApiService.getCountryStates(any()) } returns expectedStates
 
