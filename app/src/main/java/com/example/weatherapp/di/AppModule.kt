@@ -45,6 +45,7 @@ val appModule = module {
             }
             .build()
     }
+
     single(named(WEATHER_CLIENT)) {
         OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -71,6 +72,7 @@ val appModule = module {
             .build()
             .create(StatesApiService::class.java)
     }
+
     single {
         Retrofit.Builder()
             .baseUrl(BuildConfig.WEATHER_BASE_URL)
