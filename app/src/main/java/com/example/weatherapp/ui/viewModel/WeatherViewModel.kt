@@ -16,8 +16,8 @@ class WeatherViewModel(private val getStateWeatherUseCase: GetStateWeatherUseCas
 
     fun getStateWeather(state: String) {
         viewModelScope.launch {
-            _uiState.value = ResultState.Loading
-            _uiState.value = getStateWeatherUseCase(state)
+            _uiState.emit(ResultState.Loading)
+            _uiState.emit(getStateWeatherUseCase(state))
         }
     }
 }
