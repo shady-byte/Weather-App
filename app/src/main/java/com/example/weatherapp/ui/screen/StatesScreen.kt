@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.weatherapp.R
-import com.example.weatherapp.data.remote.dto.CountryState
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.domain.model.CountryState
+import com.example.weatherapp.ui.util.StatesUiState
 import com.example.weatherapp.ui.component.SearchTopBar
 import com.example.weatherapp.ui.component.ShowCircularProgress
 import com.example.weatherapp.ui.component.ShowMessageBox
@@ -42,7 +42,7 @@ fun StatesScreen(
     navController: NavHostController,
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    var searchQuery by rememberSaveable  { mutableStateOf("") }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Scaffold(topBar = {
         SearchTopBar(
@@ -52,37 +52,30 @@ fun StatesScreen(
         )
     }) { paddingValue ->
         when (val state = uiState) {
-            is ResultState.Idle -> {
+            is StatesUiState.Idle -> {
                 ShowMessageBox(
                     modifier = modifier.padding(paddingValue),
                     message = stringResource(R.string.enter_Iso2_message)
                 )
             }
 
-            is ResultState.Loading -> {
+            is StatesUiState.Loading -> {
                 ShowCircularProgress(modifier = modifier.padding(paddingValue))
             }
 
-            is ResultState.Error -> {
+            is StatesUiState.Error -> {
                 ShowMessageBox(
                     modifier = modifier.padding(paddingValue),
-                    message = stringResource(R.string.no_iso2_error)
+                    message = stringResource(state.messageRes)
                 )
             }
 
-            is ResultState.Success -> {
-                if (state.data.isEmpty()) {
-                    ShowMessageBox(
-                        modifier = modifier.padding(paddingValue),
-                        message = stringResource(R.string.no_states)
-                    )
-                } else {
-                    StatesSuccessScreen(
-                        modifier = modifier.padding(paddingValue),
-                        states = state.data,
-                        onItemClick = { navController.navigate(NavigationRoutes.weatherRoute(it.name)) }
-                    )
-                }
+            is StatesUiState.Success -> {
+                StatesSuccessScreen(
+                    modifier = modifier.padding(paddingValue),
+                    states = state.data,
+                    onItemClick = { navController.navigate(NavigationRoutes.weatherRoute(it.name)) }
+                )
             }
         }
     }

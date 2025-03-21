@@ -1,9 +1,10 @@
 package com.example.weatherapp.presentation
 
 import app.cash.turbine.test
-import com.example.weatherapp.data.remote.dto.CountryState
+import com.example.weatherapp.R
+import com.example.weatherapp.domain.model.CountryState
 import com.example.weatherapp.domain.usecase.GetCountryStatesUseCase
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.ui.util.StatesUiState
 import com.example.weatherapp.ui.viewModel.StatesViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -43,15 +44,18 @@ class StatesViewModelUnitTest {
     fun `getCountryStates emits Success when useCase returns data successfully`() =
         runTest {
             val countryCode = "EG"
-            val statesList = mockk<List<CountryState>>()
+            val statesList = listOf(
+                mockk<CountryState>(),
+                mockk<CountryState>()
+            )
 
-            coEvery { getCountryStatesUseCase(any()) } returns ResultState.Success(statesList)
+            coEvery { getCountryStatesUseCase(any()) } returns Result.success(statesList)
 
             statesViewModel.uiState.test {
-                assertEquals(ResultState.Idle, awaitItem())
+                assertEquals(StatesUiState.Idle, awaitItem())
                 statesViewModel.getCountryStates(countryCode)
 
-                assertEquals(ResultState.Success(statesList), awaitItem())
+                assertEquals(StatesUiState.Success(statesList), awaitItem())
                 cancelAndIgnoreRemainingEvents()
             }
         }
@@ -60,13 +64,30 @@ class StatesViewModelUnitTest {
     fun `getCountryStates emits Error when useCase returns error`() = runTest {
         val countryCode = "EG"
 
-        coEvery { getCountryStatesUseCase(any()) } returns ResultState.Error("Something went wrong")
+        coEvery { getCountryStatesUseCase(any()) } returns Result.failure(
+            exception = Exception("")
+        )
 
         statesViewModel.uiState.test {
-            assertEquals(ResultState.Idle, awaitItem())
+            assertEquals(StatesUiState.Idle, awaitItem())
             statesViewModel.getCountryStates(countryCode)
 
-            assertEquals(ResultState.Error("Something went wrong"), awaitItem())
+            assertEquals(StatesUiState.Error(R.string.no_iso2_error), awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `getCountryStates emits Error when useCase returns Success with empty list`() = runTest {
+        val countryCode = "EG"
+
+        coEvery { getCountryStatesUseCase(any()) } returns Result.success(emptyList())
+
+        statesViewModel.uiState.test {
+            assertEquals(StatesUiState.Idle, awaitItem())
+            statesViewModel.getCountryStates(countryCode)
+
+            assertEquals(StatesUiState.Error(R.string.no_states), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }

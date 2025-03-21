@@ -1,9 +1,9 @@
 package com.example.weatherapp.presentation
 
 import app.cash.turbine.test
-import com.example.weatherapp.data.remote.dto.StateWeather
+import com.example.weatherapp.domain.model.StateWeather
 import com.example.weatherapp.domain.usecase.GetStateWeatherUseCase
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.ui.util.WeatherUiState
 import com.example.weatherapp.ui.viewModel.WeatherViewModel
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -44,13 +44,13 @@ class WeatherViewModelUnitTest {
         val stateName = "Alexandria"
         val expectedWeather = mockk<StateWeather>()
 
-        coEvery { getStateWeatherUseCase(any()) } returns ResultState.Success(expectedWeather)
+        coEvery { getStateWeatherUseCase(any()) } returns Result.success(expectedWeather)
 
         weatherViewModel.uiState.test {
-            assertEquals(ResultState.Loading, awaitItem())
+            assertEquals(WeatherUiState.Loading, awaitItem())
             weatherViewModel.getStateWeather(stateName)
 
-            assertEquals(ResultState.Success(expectedWeather), awaitItem())
+            assertEquals(WeatherUiState.Success(expectedWeather), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -59,13 +59,13 @@ class WeatherViewModelUnitTest {
     fun `getStateWeather emits Error when useCase returns error with message`() = runTest {
         val stateName = "Alexandria"
 
-        coEvery { getStateWeatherUseCase(any()) } returns ResultState.Error("Something went wrong")
+        coEvery { getStateWeatherUseCase(any()) } returns Result.failure(Exception(""))
 
         weatherViewModel.uiState.test {
-            assertEquals(ResultState.Loading, awaitItem())
+            assertEquals(WeatherUiState.Loading, awaitItem())
             weatherViewModel.getStateWeather(stateName)
 
-            assertEquals(ResultState.Error("Something went wrong"), awaitItem())
+            assertEquals(WeatherUiState.Error(""), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }

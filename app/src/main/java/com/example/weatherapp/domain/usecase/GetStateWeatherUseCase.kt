@@ -1,17 +1,13 @@
 package com.example.weatherapp.domain.usecase
 
-import com.example.weatherapp.data.remote.dto.StateWeather
+import com.example.weatherapp.domain.model.StateWeather
 import com.example.weatherapp.domain.repository.WeatherRepository
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.domain.util.mapToStateWeather
 
-class GetStateWeatherUseCase(private val weatherRepository: WeatherRepository) :
-    UseCase<String, StateWeather> {
-    override suspend fun invoke(params: String): ResultState<StateWeather> {
-        return try {
-            val response = weatherRepository.getStateWeather(params)
-            ResultState.Success(response)
-        } catch (ex: Exception) {
-            ResultState.Error(ex.message ?: "An error occurred")
+class GetStateWeatherUseCase(private val weatherRepository: WeatherRepository) {
+    suspend operator fun invoke(params: String): Result<StateWeather> {
+        return runCatching {
+            weatherRepository.getStateWeather(params).mapToStateWeather()
         }
     }
 }

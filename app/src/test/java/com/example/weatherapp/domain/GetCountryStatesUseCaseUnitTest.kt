@@ -1,12 +1,13 @@
 package com.example.weatherapp.domain
 
-import com.example.weatherapp.data.remote.dto.CountryState
-import com.example.weatherapp.domain.repository.StatesRepository
+import com.example.weatherapp.data.remote.dto.CountryStateDto
+import com.example.weatherapp.data.repository.StatesRepositoryImpl
 import com.example.weatherapp.domain.usecase.GetCountryStatesUseCase
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.domain.util.mapToCountryState
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -18,7 +19,7 @@ import org.junit.Before
 import org.junit.Test
 
 class GetCountryStatesUseCaseUnitTest {
-    private val statesRepository: StatesRepository = mockk()
+    private val statesRepository: StatesRepositoryImpl = mockk()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = UnconfinedTestDispatcher()
@@ -39,41 +40,55 @@ class GetCountryStatesUseCaseUnitTest {
     }
 
     @Test
-    fun `invoke should return Success when repository returns data`() = runTest {
+    fun `getCountryStates Return Success When Repository Returns Data`() = runTest {
         val countryCode = "EG"
-        val statesList = mockk<List<CountryState>>()
+        val countryStateDto = CountryStateDto(
+            id = 1,
+            name = "Alex",
+            iso2 = "Al"
+        )
+        val countryState = countryStateDto.mapToCountryState()
+        val repoStatesList = listOf(
+            countryStateDto,
+            countryStateDto.copy(name = "Cairo"),
+        )
 
-        coEvery { statesRepository.getCountryStates(any()) } returns statesList
+        val useCaseStatesList = listOf(
+            countryState,
+            countryState.copy(name = "Cairo"),
+        )
 
-        val result = getCountryStatesUseCase.invoke(countryCode)
-        val expectedResult = ResultState.Success(statesList)
+        coEvery { statesRepository.getCountryStates(any()) } returns repoStatesList
+
+        val result = getCountryStatesUseCase(countryCode)
+        val expectedResult = Result.success(useCaseStatesList)
 
         assertEquals(expectedResult, result)
     }
 
     @Test
-    fun `getCountryStates should return Error with message when repository throws exception with message`() =
+    fun `getCountryStates Returns Error With Message When Repository Throws Exception With Message`() =
         runTest {
             val countryCode = "EG"
 
             coEvery { statesRepository.getCountryStates(any()) } throws Exception("Api Error")
 
-            val result = getCountryStatesUseCase.invoke(countryCode)
-            val expectedResult = ResultState.Error("Api Error")
+            val result = getCountryStatesUseCase(countryCode)
 
-            assertEquals(expectedResult, result)
+            assertTrue(result.isFailure)
+            assertEquals("Api Error", result.exceptionOrNull()?.message)
         }
 
     @Test
-    fun `getCountryStates should return Error with message when repository throws exception without message`() =
+    fun `getCountryStates Returns Error With Message When Repository Throws Exception Without Message`() =
         runTest {
             val countryCode = "EG"
 
             coEvery { statesRepository.getCountryStates(any()) } throws Exception()
 
             val result = getCountryStatesUseCase.invoke(countryCode)
-            val expectedResult = ResultState.Error("An error occurred")
 
-            assertEquals(expectedResult, result)
+            assertTrue(result.isFailure)
+            assertEquals(null, result.exceptionOrNull()?.message)
         }
 }

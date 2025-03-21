@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.weatherapp.data.remote.dto.CountryState
+import com.example.weatherapp.domain.model.CountryState
 
 @Composable
 fun StateCard(modifier: Modifier = Modifier, state: CountryState, onClick: () -> Unit) {

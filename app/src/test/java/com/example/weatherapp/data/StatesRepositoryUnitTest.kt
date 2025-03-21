@@ -1,6 +1,6 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.data.remote.dto.CountryState
+import com.example.weatherapp.data.remote.dto.CountryStateDto
 import com.example.weatherapp.data.remote.StatesApiService
 import com.example.weatherapp.data.repository.StatesRepositoryImpl
 import com.example.weatherapp.domain.repository.StatesRepository
@@ -39,9 +39,9 @@ class StatesRepositoryUnitTest {
     }
 
     @Test
-    fun `getCountryStates should return list of states`() = runTest {
+    fun getCountryStatesReturnsListOfStates() = runTest {
         val countryCode = "EG"
-        val expectedStates = mockk<List<CountryState>>()
+        val expectedStates = mockk<List<CountryStateDto>>()
 
         coEvery { statesApiService.getCountryStates(any()) } returns expectedStates
 
@@ -51,10 +51,10 @@ class StatesRepositoryUnitTest {
     }
 
     @Test
-    fun `getCountryStates should return empty list of states when countryCode is Iso not Iso2`() =
+    fun getCountryStatesReturnsEmptyListOfStatesWhenCountryCodeIsIsoNotIso2() =
         runTest {
             val countryCode = "E"
-            val expectedStates = emptyList<CountryState>()
+            val expectedStates = emptyList<CountryStateDto>()
 
             coEvery { statesApiService.getCountryStates(any()) } returns expectedStates
 
@@ -64,7 +64,7 @@ class StatesRepositoryUnitTest {
         }
 
     @Test(expected = Exception::class)
-    fun `getCountryStates should return throws exception when Api fails`() = runTest {
+    fun getCountryStatesReturnThrowsExceptionWhenApiFails() = runTest {
         val countryCode = "E"
 
         coEvery { statesApiService.getCountryStates(any()) } throws  Exception("Api Error")

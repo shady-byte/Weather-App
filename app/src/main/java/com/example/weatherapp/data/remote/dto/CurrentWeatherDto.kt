@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CurrentWeather(
+data class CurrentWeatherDto(
     @SerialName("observation_time") val observationTime: String,
     val temperature: Int,
     @SerialName("weather_code") val weatherCode: Int,

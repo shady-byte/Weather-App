@@ -26,8 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.weatherapp.R
-import com.example.weatherapp.data.remote.dto.StateWeather
-import com.example.weatherapp.domain.util.ResultState
+import com.example.weatherapp.domain.model.StateWeather
 import com.example.weatherapp.ui.component.ShowCircularProgress
 import com.example.weatherapp.ui.component.ShowMessageBox
 import com.example.weatherapp.ui.component.TitleTopAppBar
@@ -36,6 +35,7 @@ import com.example.weatherapp.ui.component.WeatherIcon
 import com.example.weatherapp.ui.theme.Dimension
 import com.example.weatherapp.ui.theme.Gainsboro
 import com.example.weatherapp.ui.theme.WhiteSmoke
+import com.example.weatherapp.ui.util.WeatherUiState
 import com.example.weatherapp.ui.util.getWeatherDetails
 import com.example.weatherapp.ui.viewModel.WeatherViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -65,25 +65,18 @@ fun StateWeatherScreen(
                 .padding(paddingValues)
         ) {
             when (val state = uiState) {
-                is ResultState.Idle -> {
-                    ShowMessageBox(
-                        modifier = modifier,
-                        message = stringResource(R.string.fetch_weather)
-                    )
-                }
-
-                is ResultState.Loading -> {
+                is WeatherUiState.Loading -> {
                     ShowCircularProgress(modifier = modifier)
                 }
 
-                is ResultState.Error -> {
+                is WeatherUiState.Error -> {
                     ShowMessageBox(
                         modifier = modifier,
                         message = stringResource(R.string.no_weather_error)
                     )
                 }
 
-                is ResultState.Success -> {
+                is WeatherUiState.Success -> {
                     WeatherSuccessScreen(stateWeather = state.data)
                 }
             }
@@ -132,7 +125,7 @@ fun WeatherCard(modifier: Modifier = Modifier, stateWeather: StateWeather) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             WeatherIcon(
-                imageUrl = stateWeather.currentWeather.weatherIcons.first()
+                imageUrl = stateWeather.currentWeather.weatherIcon
             )
 
             Spacer(modifier = Modifier.padding(5.dp))

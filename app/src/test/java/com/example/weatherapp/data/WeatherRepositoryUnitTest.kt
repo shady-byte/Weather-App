@@ -1,6 +1,6 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.data.remote.dto.StateWeather
+import com.example.weatherapp.data.remote.dto.StateWeatherDto
 import com.example.weatherapp.data.remote.WeatherApiService
 import com.example.weatherapp.data.repository.WeatherRepositoryImpl
 import com.example.weatherapp.domain.repository.WeatherRepository
@@ -39,9 +39,9 @@ class WeatherRepositoryUnitTest {
     }
 
     @Test
-    fun `getStateWeather should return StateWeather`() = runTest {
+    fun `getStateWeather Return State Weather Successfully`() = runTest {
         val state = "Alexandria"
-        val expectedWeather = mockk<StateWeather>()
+        val expectedWeather = mockk<StateWeatherDto>()
 
         coEvery { weatherApiService.getStateWeather(any()) } returns expectedWeather
 
@@ -51,7 +51,7 @@ class WeatherRepositoryUnitTest {
     }
 
     @Test(expected = Exception::class)
-    fun `getStateWeather should throws exception when Api fails`() = runTest {
+    fun `getStateWeather Throws Exception When Api Fails`() = runTest {
         val state = "Alexandria"
 
         coEvery { weatherApiService.getStateWeather(any()) } throws Exception("APi Error")
