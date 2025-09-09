@@ -22,6 +22,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import okhttp3.logging.HttpLoggingInterceptor
 
 const val STATES_CLIENT = "states_client"
 const val WEATHER_CLIENT = "weather_client"
@@ -34,32 +35,42 @@ val appModule = module {
         isLenient = true
     }
 
+    val logging = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
     single(named(STATES_CLIENT)) {
-        OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val original = chain.request()
-                val newRequest = original.newBuilder()
-                    .header("X-CSCAPI-KEY", BuildConfig.STATES_API_KEY)
-                    .build()
-                chain.proceed(newRequest)
-            }
-            .build()
+        val builder = OkHttpClient.Builder()
+
+        if (BuildConfig.DEBUG)
+            builder.addInterceptor(logging)
+
+        builder.addInterceptor { chain ->
+            val original = chain.request()
+            val newRequest = original.newBuilder()
+                .header("X-CSCAPI-KEY", BuildConfig.STATES_API_KEY)
+                .build()
+            chain.proceed(newRequest)
+        }.build()
     }
 
     single(named(WEATHER_CLIENT)) {
-        OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val originalRequest = chain.request()
-                val originalUrl = originalRequest.url
+        val builder = OkHttpClient.Builder()
 
-                val newUrl = originalUrl.newBuilder()
-                    .addQueryParameter("access_key", BuildConfig.WEATHER_API_KEY)
-                    .build()
+        if (BuildConfig.DEBUG)
+            builder.addInterceptor(logging)
 
-                val newRequest = originalRequest.newBuilder().url(newUrl).build()
-                chain.proceed(newRequest)
-            }
-            .build()
+        builder.addInterceptor { chain ->
+            val originalRequest = chain.request()
+            val originalUrl = originalRequest.url
+
+            val newUrl = originalUrl.newBuilder()
+                .addQueryParameter("access_key", BuildConfig.WEATHER_API_KEY)
+                .build()
+
+            val newRequest = originalRequest.newBuilder().url(newUrl).build()
+            chain.proceed(newRequest)
+        }.build()
     }
 
     single {
