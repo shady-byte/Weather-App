@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_states">No States found</string>
+    <string name="no_iso2_error">No states, Please enter valid country Iso2</string>
+    <string name="country_states">Country States</string>
+    <string name="enter_Iso2_message">Enter country Iso2 in search bar to start displaying states</string>
+</resources>

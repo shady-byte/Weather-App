@@ -61,6 +61,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core-module"))
+    implementation(project(":countryStates"))
+    implementation(project(":stateWeather"))
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

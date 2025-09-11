@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back">Back</string>
+    <string name="search_field_hint">Enter Country Iso2 (for example: DE)</string>
+    <string name="search">Search</string>
+</resources>
